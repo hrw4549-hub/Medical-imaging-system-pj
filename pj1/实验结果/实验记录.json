@@ -1,0 +1,488 @@
+{
+  "seed": 42,
+  "inputs": [
+    {
+      "file": "Figure1_high.jpg",
+      "width": 150,
+      "height": 150,
+      "mode": "RGB",
+      "sha256": "1f2a5b425bb0b095d39e0b7313d559c9321d9eb15f7995fb692c842d6f38afe3",
+      "use": "高端设备增强"
+    },
+    {
+      "file": "Figure1_low.jpg",
+      "width": 150,
+      "height": 150,
+      "mode": "RGB",
+      "sha256": "ecbe93ff2fa0be5d65f80c45829507080be2a159419c533929e92902a5d4eb3b",
+      "use": "低端设备增强"
+    },
+    {
+      "file": "Figure2_clean.png",
+      "width": 600,
+      "height": 600,
+      "mode": "RGBA",
+      "sha256": "3d2d210f825c7c84ad74575026eda8b47c3d9fe6593a6bb7919699b57c950015",
+      "use": "人工加噪参考与空间划分训练"
+    },
+    {
+      "file": "Figure2_noisy.png",
+      "width": 256,
+      "height": 256,
+      "mode": "L",
+      "sha256": "40a74be1ff52f437c1e0b040af7c0900caa8f22f95ef22413137bdc8a7303757",
+      "use": "真实噪声独立应用"
+    }
+  ],
+  "versions": {
+    "python": "3.13.9",
+    "numpy": "2.3.5",
+    "opencv": "4.13.0",
+    "torch": "2.13.0+cu126",
+    "matplotlib": "3.10.6",
+    "scikit_image": "0.26.0",
+    "pillow": "12.0.0"
+  },
+  "contrast": [
+    {
+      "image": "high",
+      "method": "原图",
+      "mean": 54.73173333333333,
+      "std": 45.93102594223938,
+      "p05": 0.0,
+      "median": 52.5,
+      "p95": 137.0,
+      "min": 0,
+      "max": 204,
+      "entropy_bits": 6.5976688878132626,
+      "occupied_bins": 198,
+      "endpoint_pct": 18.31111111111111
+    },
+    {
+      "image": "high",
+      "method": "全局均衡化",
+      "mean": 104.93906666666666,
+      "std": 82.83092054444403,
+      "p05": 0.0,
+      "median": 100.0,
+      "p95": 240.0,
+      "min": 0,
+      "max": 255,
+      "entropy_bits": 6.518986471093152,
+      "occupied_bins": 152,
+      "endpoint_pct": 18.484444444444446
+    },
+    {
+      "image": "high",
+      "method": "规定化到另一图",
+      "mean": 83.70173333333334,
+      "std": 51.16139574692362,
+      "p05": 16.0,
+      "median": 85.5,
+      "p95": 165.0,
+      "min": 16,
+      "max": 191,
+      "entropy_bits": 6.468861168201771,
+      "occupied_bins": 153,
+      "endpoint_pct": 0.0
+    },
+    {
+      "image": "high",
+      "method": "CLAHE",
+      "mean": 83.59693333333334,
+      "std": 65.4795444185604,
+      "p05": 3.0,
+      "median": 80.0,
+      "p95": 204.0,
+      "min": 2,
+      "max": 255,
+      "entropy_bits": 7.089621624771537,
+      "occupied_bins": 254,
+      "endpoint_pct": 0.0044444444444444444
+    },
+    {
+      "image": "low",
+      "method": "原图",
+      "mean": 81.64235555555555,
+      "std": 53.99692955680414,
+      "p05": 1.0,
+      "median": 85.0,
+      "p95": 166.0,
+      "min": 0,
+      "max": 191,
+      "entropy_bits": 7.394150623175459,
+      "occupied_bins": 192,
+      "endpoint_pct": 2.431111111111111
+    },
+    {
+      "image": "low",
+      "method": "全局均衡化",
+      "mean": 125.2679111111111,
+      "std": 75.07206464659947,
+      "p05": 7.0,
+      "median": 125.0,
+      "p95": 243.0,
+      "min": 0,
+      "max": 255,
+      "entropy_bits": 7.362470458193984,
+      "occupied_bins": 179,
+      "endpoint_pct": 2.6622222222222223
+    },
+    {
+      "image": "low",
+      "method": "规定化到另一图",
+      "mean": 54.7216,
+      "std": 46.03918046495229,
+      "p05": 0.0,
+      "median": 52.0,
+      "p95": 139.0,
+      "min": 0,
+      "max": 204,
+      "entropy_bits": 6.417328436831699,
+      "occupied_bins": 152,
+      "endpoint_pct": 18.933333333333334
+    },
+    {
+      "image": "low",
+      "method": "CLAHE",
+      "mean": 103.94764444444445,
+      "std": 67.92100651170055,
+      "p05": 5.0,
+      "median": 102.0,
+      "p95": 219.0,
+      "min": 2,
+      "max": 254,
+      "entropy_bits": 7.791816466828326,
+      "occupied_bins": 253,
+      "endpoint_pct": 0.0
+    }
+  ],
+  "synthetic_metrics": [
+    {
+      "method": "人工加噪",
+      "scope": "独立测试区域",
+      "PSNR_dB": 26.72639350845049,
+      "SSIM": 0.30223999787145306,
+      "MAE": 7.529135459710743,
+      "RMSE": 11.754942389636696,
+      "pixels": 61952
+    },
+    {
+      "method": "人工加噪",
+      "scope": "测试区域内超声扇形",
+      "PSNR_dB": 26.360571170677716,
+      "SSIM": 0.389286721459295,
+      "MAE": 8.215382421447925,
+      "RMSE": 12.260597121042276,
+      "pixels": 42074
+    },
+    {
+      "method": "人工加噪",
+      "scope": "全图内区 仅作补充",
+      "PSNR_dB": 26.820693058655017,
+      "SSIM": 0.2482389259097484,
+      "MAE": 7.277023843723068,
+      "RMSE": 11.628013505120542,
+      "pixels": 348100
+    },
+    {
+      "method": "高斯滤波",
+      "scope": "独立测试区域",
+      "PSNR_dB": 31.115381037840507,
+      "SSIM": 0.41499282820498506,
+      "MAE": 5.825623063016529,
+      "RMSE": 7.092039218289782,
+      "pixels": 61952
+    },
+    {
+      "method": "高斯滤波",
+      "scope": "测试区域内超声扇形",
+      "PSNR_dB": 31.89372468184341,
+      "SSIM": 0.5195115459905042,
+      "MAE": 5.602248419451443,
+      "RMSE": 6.484163338306793,
+      "pixels": 42074
+    },
+    {
+      "method": "高斯滤波",
+      "scope": "全图内区 仅作补充",
+      "PSNR_dB": 31.259264350017972,
+      "SSIM": 0.3550816589016158,
+      "MAE": 5.879836253950014,
+      "RMSE": 6.975526018083309,
+      "pixels": 348100
+    },
+    {
+      "method": "残差 CNN",
+      "scope": "独立测试区域",
+      "PSNR_dB": 38.267528797972396,
+      "SSIM": 0.9671184468444047,
+      "MAE": 1.413255423553719,
+      "RMSE": 3.1128897578661694,
+      "pixels": 61952
+    },
+    {
+      "method": "残差 CNN",
+      "scope": "测试区域内超声扇形",
+      "PSNR_dB": 36.88823163133676,
+      "SSIM": 0.9564452746039862,
+      "MAE": 1.960759614013405,
+      "RMSE": 3.6486197014900896,
+      "pixels": 42074
+    },
+    {
+      "method": "残差 CNN",
+      "scope": "全图内区 仅作补充",
+      "PSNR_dB": 39.15581682268468,
+      "SSIM": 0.976476010821376,
+      "MAE": 1.1307009480034473,
+      "RMSE": 2.8102783606316324,
+      "pixels": 348100
+    }
+  ],
+  "real_descriptive": [
+    {
+      "method": "真实含噪原图",
+      "ROI_mean": 29.47189393939394,
+      "ROI_std": 40.0166571119202,
+      "mean_gradient": 6.688689719756732,
+      "change_RMS": 0.0
+    },
+    {
+      "method": "高斯滤波",
+      "ROI_mean": 29.461136363636363,
+      "ROI_std": 38.198435299299085,
+      "mean_gradient": 4.785962634826313,
+      "change_RMS": 6.125734340642043
+    },
+    {
+      "method": "残差 CNN",
+      "ROI_mean": 28.828636363636363,
+      "ROI_std": 39.64878325109121,
+      "mean_gradient": 5.12822938764355,
+      "change_RMS": 5.412478567387057
+    }
+  ],
+  "gaussian_validation": [
+    {
+      "sigma": 0.5,
+      "kernel": 5,
+      "PSNR_dB": 29.325476354229703,
+      "SSIM": 0.4001853755294773,
+      "MAE": 6.549651342975206,
+      "RMSE": 8.714979356599212,
+      "pixels": 30976
+    },
+    {
+      "sigma": 0.7,
+      "kernel": 7,
+      "PSNR_dB": 31.457329503467477,
+      "SSIM": 0.4469311482089271,
+      "MAE": 5.701639979338843,
+      "RMSE": 6.818262310130937,
+      "pixels": 30976
+    },
+    {
+      "sigma": 1.0,
+      "kernel": 7,
+      "PSNR_dB": 32.13692087457302,
+      "SSIM": 0.4620209360317818,
+      "MAE": 5.539094783057851,
+      "RMSE": 6.305131326418858,
+      "pixels": 30976
+    },
+    {
+      "sigma": 1.2,
+      "kernel": 9,
+      "PSNR_dB": 32.01245110135348,
+      "SSIM": 0.46153747790623934,
+      "MAE": 5.6750710227272725,
+      "RMSE": 6.3961350553826035,
+      "pixels": 30976
+    },
+    {
+      "sigma": 1.5,
+      "kernel": 11,
+      "PSNR_dB": 31.48271569073028,
+      "SSIM": 0.45450141920254994,
+      "MAE": 6.007134555785124,
+      "RMSE": 6.798363716748804,
+      "pixels": 30976
+    }
+  ],
+  "gaussian_selected": {
+    "sigma": 1.0,
+    "kernel": 7,
+    "PSNR_dB": 32.13692087457302,
+    "SSIM": 0.4620209360317818,
+    "MAE": 5.539094783057851,
+    "RMSE": 6.305131326418858,
+    "pixels": 30976
+  },
+  "training": {
+    "seed": 42,
+    "steps": 1800,
+    "best_step": 1800,
+    "best_validation_psnr": 37.75988937123106,
+    "training_seconds": 6.708889600005932,
+    "parameters": 56097,
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "architecture": "Residual CNN 8 conv layers, 32 features, ReLU, no BN",
+    "patch_size": 48,
+    "batch_size": 16,
+    "sigma": 15,
+    "train_tiles": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "validation_tiles": [
+      [
+        1,
+        2
+      ]
+    ],
+    "test_tiles": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "evaluation_border": 12,
+    "history": [
+      {
+        "step": 1,
+        "train_loss": 0.0018326533026993275,
+        "validation_psnr": 27.24376961594769
+      },
+      {
+        "step": 100,
+        "train_loss": 0.0006710593588650227,
+        "validation_psnr": 32.624647448318576
+      },
+      {
+        "step": 200,
+        "train_loss": 0.00021058256970718503,
+        "validation_psnr": 37.44540180390478
+      },
+      {
+        "step": 300,
+        "train_loss": 0.00017636310076341033,
+        "validation_psnr": 37.55423980464721
+      },
+      {
+        "step": 400,
+        "train_loss": 7.458978507202119e-05,
+        "validation_psnr": 37.418818487013425
+      },
+      {
+        "step": 500,
+        "train_loss": 0.00020950377802364528,
+        "validation_psnr": 37.479516050316064
+      },
+      {
+        "step": 600,
+        "train_loss": 6.54282994219102e-05,
+        "validation_psnr": 37.55651169785621
+      },
+      {
+        "step": 700,
+        "train_loss": 0.00017663216567598283,
+        "validation_psnr": 37.565980474289354
+      },
+      {
+        "step": 800,
+        "train_loss": 0.000154802983161062,
+        "validation_psnr": 37.47595749029224
+      },
+      {
+        "step": 900,
+        "train_loss": 0.0001424052461516112,
+        "validation_psnr": 37.45400725103499
+      },
+      {
+        "step": 1000,
+        "train_loss": 0.00019666341540869325,
+        "validation_psnr": 37.66394873832648
+      },
+      {
+        "step": 1100,
+        "train_loss": 0.00016805483028292656,
+        "validation_psnr": 37.629259875197604
+      },
+      {
+        "step": 1200,
+        "train_loss": 0.00015845304005779326,
+        "validation_psnr": 37.68245969317419
+      },
+      {
+        "step": 1300,
+        "train_loss": 8.744955994188786e-05,
+        "validation_psnr": 37.651149587645335
+      },
+      {
+        "step": 1400,
+        "train_loss": 0.00017980884877033532,
+        "validation_psnr": 37.609444123014114
+      },
+      {
+        "step": 1500,
+        "train_loss": 7.611759065184742e-05,
+        "validation_psnr": 37.672910452700144
+      },
+      {
+        "step": 1600,
+        "train_loss": 8.527092722943053e-05,
+        "validation_psnr": 37.7504896525036
+      },
+      {
+        "step": 1700,
+        "train_loss": 0.0002273678546771407,
+        "validation_psnr": 37.61743432032172
+      },
+      {
+        "step": 1800,
+        "train_loss": 0.00015988064114935696,
+        "validation_psnr": 37.75988937123106
+      }
+    ]
+  },
+  "noise": {
+    "requested_sigma": 15,
+    "raw_sample_std": 15.00561343347602,
+    "after_clipping_error_std": 10.601033329494609,
+    "after_clipping_error_mean": 4.702383333333334
+  },
+  "mask_counts": {
+    "train": 240000,
+    "validation": 30976,
+    "test": 61952,
+    "test_fan": 42074
+  }
+}
